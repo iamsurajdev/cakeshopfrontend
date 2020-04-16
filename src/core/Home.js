@@ -1,7 +1,5 @@
 import React from "react";
-import "../style.css";
 import Base from "./Base";
-import { isAuthenticated } from "../auth/api/Authentication";
 
 export default function Home() {
   // console.log(isAuthenticated());
