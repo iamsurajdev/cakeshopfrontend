@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ImageApi from "./api/ImageApi";
 import { Redirect } from "react-router-dom";
 import { addItemToCart, removeItemFromCart } from "./api/CartHelper";
+import { isAuthenticated } from "../auth/api/Authentication";
 
 const Card = ({
   product,
@@ -18,7 +19,11 @@ const Card = ({
   const cartPrice = product ? product.price : "DEFAULT";
 
   const addToCart = () => {
-    addItemToCart(product, () => setRedirect(true));
+    if (isAuthenticated()) {
+      addItemToCart(product, () => setRedirect(true));
+    } else {
+      alert("you are not login");
+    }
   };
 
   const getARedirect = (redirect) => {
