@@ -1,0 +1,101 @@
+.imagecontainer {
+  background-image: url(https://images.pexels.com/photos/585581/pexels-photo-585581.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+  height: 500px;
+  width: 100%;
+  background-size: cover;
+  margin: 0;
+
+  /* https: //images.pexels.com/photos/1028714/pexels-photo-1028714.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940; */
+}
+
+.siteTitleDiv {
+  margin-top: 0;
+  text-align: center;
+}
+.subtitle {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.title {
+  margin: auto;
+  margin-top: 0;
+  padding-top: 30px;
+  font-size: 60px;
+  color: #ffffff;
+  text-shadow: 2px 2px 8px rgb(0, 0, 0);
+}
+
+.secondContainer {
+  height: 500px;
+  width: 100%;
+  background-color: rgb(235, 188, 188);
+}
+
+.secondTitle {
+  text-align: center;
+  font-size: 40px;
+  color: rgb(168, 115, 115);
+  margin: 0;
+  padding-top: 30px;
+}
+
+.usp_container {
+  display: block;
+  margin-top: 40px;
+  height: 300px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "div1 div2 div3";
+}
+
+.first_uspdiv {
+  grid-area: div1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.second_uspdiv {
+  grid-area: div2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.third_uspdiv {
+  grid-area: div3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uspcard {
+  width: 70%;
+  height: 100%;
+  background: rgb(235, 188, 188);
+  border-radius: 8px;
+
+  box-shadow: 2px 1px 6px rgb(168, 115, 115);
+  overflow: visible;
+  display: block;
+}
+
+.uspcard h1 {
+  margin: 0;
+  text-align: center;
+  font-size: 70px;
+  color: #ffffff;
+}
+
+.uspcard h2 {
+  text-align: center;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.uspcard p {
+  text-align: center;
+  margin: auto;
+  margin-top: 10px;
+  color: #ffffff;
+}

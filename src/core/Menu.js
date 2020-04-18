@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { logout, isAuthenticated } from "../auth/api/Authentication";
-import Mstyle from "./style/menu.module.css";
+import Mstyle from "./allstyles/menu.module.css";
 
 const currentTab = (history, path) => {
   if (history.location.pathname === path) {

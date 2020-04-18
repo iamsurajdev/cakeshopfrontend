@@ -1,13 +1,15 @@
 import React from "react";
 import Menu from "./Menu";
 import "../style.css";
-import { Bstyle } from "./style/base.css";
-
-const Base = ({ className = "bg-dark text-white p-4", children }) => (
+import Bstyle from "./allstyles/base.module.css";
+const Base = ({ children }) => (
   <div>
     <Menu />
 
-    <div className={className}>{children}</div>
+    <div>{children}</div>
+    <footer className={Bstyle.f}>
+      <h1>Hello this is footer...!</h1>
+    </footer>
   </div>
 );
 
