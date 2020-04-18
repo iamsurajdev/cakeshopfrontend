@@ -1,90 +1,28 @@
 import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { logout, isAuthenticated } from "../auth/api/Authentication";
+import Mstyle from "./style/menu.module.css";
 
 const currentTab = (history, path) => {
   if (history.location.pathname === path) {
-    return { color: "#2ecc72" };
+    return { color: "#b33d3d" };
   } else {
     return { color: "#FFFFFF" };
   }
 };
 
 const Menu = ({ history }) => (
-  <div>
-    <ul className="nav nav-tabs bg-dark">
-      <li className="nav-item">
-        <Link style={currentTab(history, "/")} className="nav-link" to="/">
-          Home
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link
-          style={currentTab(history, "/cakes")}
-          className="nav-link"
-          to="/cakes"
-        >
-          Cakes
-        </Link>
-      </li>
-
-      {isAuthenticated() && isAuthenticated().user.role === 1 && (
-        <li className="nav-item">
-          <Link
-            style={currentTab(history, "/user/dashboard")}
-            className="nav-link"
-            to="/admin/dashboard"
-          >
-            A. Dashboard
-          </Link>
-        </li>
-      )}
-      {isAuthenticated() && isAuthenticated().user.role === 0 && (
-        <li className="nav-item">
-          <Link
-            style={currentTab(history, "/admin/dashboard")}
-            className="nav-link"
-            to="/user/dashboard"
-          >
-            U. Dashboard
-          </Link>
-        </li>
-      )}
-      {!isAuthenticated() && (
-        <Fragment>
-          <li className="nav-item">
-            <Link
-              style={currentTab(history, "/signup")}
-              className="nav-link"
-              to="/register"
-            >
-              Register
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link
-              style={currentTab(history, "/signin")}
-              className="nav-link"
-              to="/login"
-            >
-              Login
-            </Link>
-          </li>
-        </Fragment>
-      )}
-      <li className="nav-item">
-        <Link
-          style={currentTab(history, "/cart")}
-          className="nav-link"
-          to="/cart"
-        >
-          Cart
-        </Link>
-      </li>
+  <div className={Mstyle.navbar}>
+    <div className={Mstyle.icon}>
+      <Link className={Mstyle.iconLink} to="/">
+        Cakes
+      </Link>
+    </div>
+    <ul className={Mstyle.navlist}>
       {isAuthenticated() && (
-        <li className="nav-item">
+        <li className={Mstyle.navItem}>
           <span
-            className="nav-link text-warning"
+            className={Mstyle.link}
             onClick={() => {
               logout(() => {
                 history.push("/");
@@ -95,6 +33,76 @@ const Menu = ({ history }) => (
           </span>
         </li>
       )}
+      {isAuthenticated() && isAuthenticated().user.role === 1 && (
+        <li className={Mstyle.navItem}>
+          <Link
+            style={currentTab(history, "/user/dashboard")}
+            className={Mstyle.link}
+            to="/admin/dashboard"
+          >
+            A. Dashboard
+          </Link>
+        </li>
+      )}
+      {isAuthenticated() && (
+        <li className={Mstyle.navItem}>
+          <Link
+            style={currentTab(history, "/admin/dashboard")}
+            className={Mstyle.link}
+            to="/user/dashboard"
+          >
+            U. Dashboard
+          </Link>
+        </li>
+      )}
+      {!isAuthenticated() && (
+        <Fragment>
+          <li className={Mstyle.navItem}>
+            <Link
+              style={currentTab(history, "/signin")}
+              className={Mstyle.link}
+              to="/login"
+            >
+              Login
+            </Link>
+          </li>
+          <li className={Mstyle.navItem}>
+            <Link
+              style={currentTab(history, "/signup")}
+              className={Mstyle.link}
+              to="/register"
+            >
+              Register
+            </Link>
+          </li>
+        </Fragment>
+      )}
+      {isAuthenticated() && (
+        <li className={Mstyle.navItem}>
+          <Link
+            style={currentTab(history, "/cart")}
+            className={Mstyle.link}
+            to="/cart"
+          >
+            Cart
+          </Link>
+        </li>
+      )}
+
+      <li className={Mstyle.navItem}>
+        <Link
+          style={currentTab(history, "/cakes")}
+          className={Mstyle.link}
+          to="/cakes"
+        >
+          Cakes
+        </Link>
+      </li>
+      <li className={Mstyle.navItem}>
+        <Link className={Mstyle.link} style={currentTab(history, "/")} to="/">
+          Home
+        </Link>
+      </li>
     </ul>
   </div>
 );
