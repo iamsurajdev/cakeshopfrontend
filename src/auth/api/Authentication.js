@@ -58,6 +58,6 @@ export const isAuthenticated = () => {
   if (localStorage.getItem("jwt")) {
     return JSON.parse(localStorage.getItem("jwt"));
   } else {
-    return false;
+    return console.log("isAuthenticated not working");
   }
 };

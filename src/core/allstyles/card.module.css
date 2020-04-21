@@ -1,0 +1,35 @@
+.card {
+  height: 400px;
+  width: 350px;
+  background-color: aquamarine;
+  margin: 30px;
+  display: block;
+  border-radius: 10px;
+}
+
+.cardTitle {
+  text-align: center;
+  margin: 0;
+  font-size: 25px;
+}
+
+.cartDescription {
+  text-align: center;
+  font-size: 17px;
+}
+
+.addButton {
+  border-style: none;
+  width: 100%;
+  height: 30px;
+  border-radius: 3px;
+  background-color: rgb(10, 211, 53);
+}
+
+.removeButton {
+  border-style: none;
+  width: 100%;
+  height: 30px;
+  border-radius: 3px;
+  background-color: rgb(211, 124, 10);
+}

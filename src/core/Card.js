@@ -3,7 +3,7 @@ import ImageApi from "./api/ImageApi";
 import { Redirect } from "react-router-dom";
 import { addItemToCart, removeItemFromCart } from "./api/CartHelper";
 import { isAuthenticated } from "../auth/api/Authentication";
-
+import Cstyle from "./allstyles/card.module.css";
 const Card = ({
   product,
   addtoCart = true,
@@ -15,7 +15,7 @@ const Card = ({
   const [count, setCount] = useState(product.count);
 
   const cartTitle = product ? product.name : "A photo from pexels";
-  const cartDescrption = product ? product.description : "Default description";
+  const cartDescription = product ? product.description : "Default description";
   const cartPrice = product ? product.price : "DEFAULT";
 
   const addToCart = () => {
@@ -35,10 +35,7 @@ const Card = ({
   const showAddToCart = (addtoCart) => {
     return (
       addtoCart && (
-        <button
-          onClick={addToCart}
-          className="btn btn-block btn-outline-success mt-2 mb-2"
-        >
+        <button onClick={addToCart} className={Cstyle.addButton}>
           Add to Cart
         </button>
       )
@@ -53,7 +50,7 @@ const Card = ({
             removeItemFromCart(product._id);
             setReload(!reload);
           }}
-          className="btn btn-block btn-outline-danger mt-2 mb-2"
+          className={Cstyle.removeButton}
         >
           Remove from cart
         </button>
@@ -61,15 +58,15 @@ const Card = ({
     );
   };
   return (
-    <div className="card text-white bg-dark border border-info ">
-      <div className="card-header lead">{cartTitle}</div>
+    <div className={Cstyle.card}>
+      <div className={Cstyle.cardTitle}>{cartTitle}</div>
       <div className="card-body">
         {getARedirect(redirect)}
         <ImageApi product={product} />
-        <p className="lead bg-success font-weight-normal text-wrap">
-          {cartDescrption}
+        <p className={Cstyle.cartDescription}>{cartDescription}</p>
+        <p className="btn btn-success rounded  btn-sm px-4">
+          Price: $ {cartPrice}
         </p>
-        <p className="btn btn-success rounded  btn-sm px-4">$ {cartPrice}</p>
         <div className="row">
           <div className="col-12">{showAddToCart(addtoCart)}</div>
           <div className="col-12">{showRemoveFromCart(removeFromCart)}</div>

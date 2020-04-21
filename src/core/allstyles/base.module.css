@@ -1,9 +1,72 @@
-.f {
-  background-color: blue;
+.footer {
+  background-color: #ee7f7f;
   width: 100%;
-  height: 100px;
+  height: 370px;
 }
 
-.f h1 {
+.footerMainDiv {
+  height: 90%;
+  width: 95%;
+  margin: auto;
+  padding-top: 15px;
+  margin-bottom: -20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-areas: "div1 div2 div3";
+}
+
+.footerGrid1 {
+  grid-area: div1;
+}
+.footerGrid1 h2 {
+  width: 350px;
+  font-family: monospace;
+  font-size: 35px;
+  border-bottom: 5px solid #443c3c;
+}
+.footerGrid1 p {
+  font-size: 20px;
+  padding-right: 20px;
+  letter-spacing: 1px;
+}
+
+.footerGrid2 {
+  grid-area: div2;
+}
+
+.footerGrid2 h2 {
+  width: 60%;
+  font-family: monospace;
+  font-size: 35px;
+  border-bottom: 5px solid #443c3c;
+}
+
+.footerGrid2 p {
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.footerGrid3 {
+  grid-area: div3;
+}
+
+.footerGrid3 h2 {
+  width: 80%;
+  font-family: monospace;
+  font-size: 35px;
+  border-bottom: 5px solid #443c3c;
+}
+
+.footerGrid3 li {
+  list-style-type: none;
+  margin-left: 10px;
+  font-size: 20px;
+}
+
+.copyRight {
+  text-align: center;
+  font-size: 15px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   margin: 0;
 }

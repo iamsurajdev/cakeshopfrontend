@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Base from "../core/Base";
 import { Link } from "react-router-dom";
 import { register } from "../auth/api/Authentication";
+import Rstyle from "./allStyle/register.module.css";
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -20,11 +21,13 @@ const Register = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    setValues({ ...values, error: false });
+    // setValues({ ...values, error: false });
     register({ name, email, password })
       .then((data) => {
-        if (data.error) {
-          setValues({ ...values, error: data.error, success: false });
+        console.log(data);
+
+        if (data.errors) {
+          setValues({ ...values, error: data.errors, success: false });
         } else {
           setValues({
             ...values,
@@ -36,43 +39,43 @@ const Register = () => {
           });
         }
       })
-      .catch(console.log("Error in register"));
+      .catch(console.log(error));
   };
 
   const signUpForm = () => {
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
+      <div className={Rstyle.mainContainer}>
+        <div className={Rstyle.formContainer}>
           <form>
-            <div className="form-group">
-              <label className="text-light">Name</label>
+            <div className={Rstyle.singleFiled}>
+              <label className={Rstyle.formLabel}>Name</label>
               <input
-                className="form-control"
+                className={Rstyle.inputFiled}
                 onChange={handleChange("name")}
                 type="text"
                 value={name}
               />
             </div>
-            <div className="form-group">
-              <label className="text-light">Email</label>
+            <div className={Rstyle.singleFiled}>
+              <label className={Rstyle.formLabel}>Email</label>
               <input
-                className="form-control"
+                className={Rstyle.inputFiled}
                 onChange={handleChange("email")}
                 type="email"
                 value={email}
               />
             </div>
 
-            <div className="form-group">
-              <label className="text-light">Password</label>
+            <div className={Rstyle.singleFiled}>
+              <label className={Rstyle.formLabel}>Password</label>
               <input
                 onChange={handleChange("password")}
-                className="form-control"
+                className={Rstyle.inputFiled}
                 type="password"
                 value={password}
               />
             </div>
-            <button onClick={onSubmit} className="btn btn-success btn-block">
+            <button onClick={onSubmit} className={Rstyle.button}>
               Submit
             </button>
           </form>
@@ -83,15 +86,13 @@ const Register = () => {
 
   const successMessage = () => {
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <div
-            className="alert alert-success"
-            style={{ display: success ? "" : "none" }}
-          >
-            New account was created successfully. Please
-            <Link to="/Login">Login Here</Link>
-          </div>
+      <div className={Rstyle.sMessageMainDiv}>
+        <div
+          className={Rstyle.sAlert}
+          style={{ display: success ? "" : "none" }}
+        >
+          New account was created successfully. Please
+          <Link to="/Login">Login Here</Link>
         </div>
       </div>
     );
@@ -99,23 +100,19 @@ const Register = () => {
 
   const errorMessage = () => {
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <div
-            className="alert alert-danger"
-            style={{ display: error ? "" : "none" }}
-          >
-            {error}
-          </div>
+      <div className={Rstyle.eMessageMainDiv}>
+        <div className={Rstyle.eAlert} style={{ display: error ? "" : "none" }}>
+          {error}
         </div>
       </div>
     );
   };
 
   return (
-    <Base title="Sign up page" description="A page for user to sign up!">
-      {successMessage()}
+    <Base>
       {errorMessage()}
+      {successMessage()}
+
       {signUpForm()}
     </Base>
   );

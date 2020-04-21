@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import Base from "./Base";
 import Card from "./Card";
 import { getProducts } from "../admin/api/AdminApi";
+import Astyle from "./allstyles/allproducts.module.css";
+import { logout, isAuthenticated } from "../auth/api/Authentication";
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -13,6 +15,7 @@ const AllProducts = () => {
         setError(data.error);
       } else {
         setProducts(data);
+        console.log(isAuthenticated());
       }
     });
   };
@@ -21,11 +24,11 @@ const AllProducts = () => {
     loadAllProduct();
   }, []);
   return (
-    <Base title="All Products" description="Welcome Dear, choose your Cake">
-      <div className="row">
+    <Base>
+      <div className={Astyle.mainComponent}>
         {products.map((product, index) => {
           return (
-            <div key={index} className="col-4 mb-4">
+            <div key={index} className={Astyle.card}>
               <Card product={product} />
             </div>
           );

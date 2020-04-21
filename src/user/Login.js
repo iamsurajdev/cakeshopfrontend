@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Base from "../core/Base";
 import { Redirect } from "react-router-dom";
-
+import Lstyle from "./allStyle/login.module.css";
 import {
   login,
   authenticate,
@@ -18,7 +18,6 @@ const Login = () => {
   });
 
   const { email, password, error, loading, didRedirect } = values;
-  const { user } = isAuthenticated();
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -29,9 +28,15 @@ const Login = () => {
     setValues({ ...values, error: false, loading: true });
     login({ email, password })
       .then((data) => {
-        if (data.error) {
-          setValues({ ...values, error: data.error, loading: false });
-        } else {
+        if (data.errors) {
+          setValues({ ...values, error: data.errors, loading: false });
+          console.log("DATA.ERRORS works");
+        }
+        if (data.message) {
+          setValues({ ...values, error: data.message, loading: false });
+          console.log("DATA.MESSAGE works");
+        }
+        if (data.user) {
           authenticate(data, () => {
             setValues({
               ...values,
@@ -45,22 +50,17 @@ const Login = () => {
 
   const performRedirect = () => {
     if (didRedirect) {
-      if (user && user.role === 1) {
-        return <Redirect to="/admin/dashboard" />;
-      } else {
-        return <Redirect to="/user/dashboard" />;
+      if (isAuthenticated().user) {
+        return <Redirect to="/" />;
       }
-    }
-    if (isAuthenticated()) {
-      return <Redirect to="/" />;
     }
   };
 
   const loadingMessage = () => {
     return (
       loading && (
-        <div className="alert alert-info">
-          <h2>Loading...</h2>
+        <div className={Lstyle.loadingMainDiv}>
+          <h2 className={Lstyle.loadingAlert}>Loading...</h2>
         </div>
       )
     );
@@ -68,14 +68,9 @@ const Login = () => {
 
   const errorMessage = () => {
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
-          <div
-            className="alert alert-danger"
-            style={{ display: error ? "" : "none" }}
-          >
-            {error}
-          </div>
+      <div className={Lstyle.eMessageMainDiv}>
+        <div className={Lstyle.eAlert} style={{ display: error ? "" : "none" }}>
+          {error}
         </div>
       </div>
     );
@@ -83,29 +78,29 @@ const Login = () => {
 
   const signInForm = () => {
     return (
-      <div className="row">
-        <div className="col-md-6 offset-sm-3 text-left">
+      <div className={Lstyle.mainContainer}>
+        <div className={Lstyle.formContainer}>
           <form>
-            <div className="form-group">
-              <label className="text-light">Email</label>
+            <div className={Lstyle.singleFiled}>
+              <label className={Lstyle.formLabel}>Email</label>
               <input
                 onChange={handleChange("email")}
                 value={email}
-                className="form-control"
+                className={Lstyle.inputFiled}
                 type="email"
               />
             </div>
 
-            <div className="form-group">
-              <label className="text-light">Password</label>
+            <div className={Lstyle.singleFiled}>
+              <label className={Lstyle.formLabel}>Password</label>
               <input
                 onChange={handleChange("password")}
                 value={password}
-                className="form-control"
+                className={Lstyle.inputFiled}
                 type="password"
               />
             </div>
-            <button onClick={onSubmit} className="btn btn-success btn-block">
+            <button onClick={onSubmit} className={Lstyle.button}>
               Submit
             </button>
           </form>
