@@ -101,7 +101,7 @@ const Login = () => {
               />
             </div>
             <button onClick={onSubmit} className={Lstyle.button}>
-              Submit
+              Login
             </button>
           </form>
         </div>

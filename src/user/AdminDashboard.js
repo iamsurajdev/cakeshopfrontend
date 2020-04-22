@@ -2,39 +2,40 @@ import React from "react";
 import Base from "../core/Base";
 import { isAuthenticated } from "../auth/api/Authentication";
 import { Link } from "react-router-dom";
+import Astyle from "./allStyle/aDashboard.module.css";
 
 const AdminDashBoard = () => {
   const {
-    user: { name, email, role },
+    user: { name, email },
   } = isAuthenticated();
 
   const adminLeftSide = () => {
     return (
-      <div className="card">
-        <h4 className="card-header bg-dark text-white">Admin Navigation</h4>
-        <ul className="list-group">
-          <li className="list-group-item">
-            <Link to="/admin/create/category" className="nav-link text-success">
+      <div className={Astyle.leftSideContainer}>
+        <h4 className={Astyle.leftSideHeading}>Admin Navigation</h4>
+        <ul className={Astyle.navUl}>
+          <li className={Astyle.navItem}>
+            <Link to="/admin/create/category" className={Astyle.link}>
               Create Categories
             </Link>
           </li>
-          <li className="list-group-item">
-            <Link to="/admin/categories" className="nav-link text-success">
+          <li className={Astyle.navItem}>
+            <Link to="/admin/categories" className={Astyle.link}>
               Manege Categories
             </Link>
           </li>
-          <li className="list-group-item">
-            <Link to="/admin/create/product" className="nav-link text-success">
+          <li className={Astyle.navItem}>
+            <Link to="/admin/create/product" className={Astyle.link}>
               Create Product
             </Link>
           </li>
-          <li className="list-group-item">
-            <Link to="/admin/products" className="nav-link text-success">
+          <li className={Astyle.navItem}>
+            <Link to="/admin/products" className={Astyle.link}>
               Manege Products
             </Link>
           </li>
-          <li className="list-group-item">
-            <Link to="/admin/orders" className="nav-link text-success">
+          <li className={Astyle.navItem}>
+            <Link to="/admin/orders" className={Astyle.link}>
               Manage Orders
             </Link>
           </li>
@@ -44,36 +45,30 @@ const AdminDashBoard = () => {
   };
   const adminRightSide = () => {
     return (
-      <div className="card mb-4">
-        <h4 className="card-header">Admin Information</h4>
-        <ul className="list-group">
-          <li className="list-group-item">
-            <span className="badge badge-success mr-2">Name: </span> {name}
-          </li>
-          <li className="list-group-item">
+      <div className={Astyle.rightSideContainer}>
+        <h4 className={Astyle.rightSideHeading}> Hey, Admin</h4>
+        <div className={Astyle.adminInformation}>
+          <p>
+            Welcome <strong> {name}</strong>, hope you doing well
+          </p>
+          <p>
             <span className="badge badge-success mr-2">Email: </span> {email}
-          </li>
-          <li className="list-group-item">
-            <span className="badge badge-danger mr-2">Admin area </span>
-          </li>
-        </ul>
+          </p>
+        </div>
+        <div className={Astyle.rightSideHeading}>Admin area</div>
       </div>
     );
   };
 
   return (
-    <div>
-      <Base
-        title="Welcome to admin area"
-        description="Manage all of your products here"
-        className="container bg-success p-4"
-      >
-        <div className="row">
-          <div className="col-3">{adminLeftSide()}</div>
-          <div className="col-9">{adminRightSide()}</div>
+    <Base>
+      <div className={Astyle.Container}>
+        <div className={Astyle.mainBaseContainer}>
+          <div className={Astyle.adminLeftSide}>{adminLeftSide()}</div>
+          <div className={Astyle.adminRightSide}>{adminRightSide()}</div>
         </div>
-      </Base>
-    </div>
+      </div>
+    </Base>
   );
 };
 

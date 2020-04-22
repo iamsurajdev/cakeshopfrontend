@@ -76,7 +76,7 @@ const Register = () => {
               />
             </div>
             <button onClick={onSubmit} className={Rstyle.button}>
-              Submit
+              Register
             </button>
           </form>
         </div>

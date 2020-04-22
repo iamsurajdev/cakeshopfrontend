@@ -1,0 +1,77 @@
+.leftSideContainer {
+  text-align: center;
+}
+
+.leftSideHeading {
+  font-size: 30px;
+  margin: 0;
+  padding-top: 10px;
+}
+
+.navUl {
+  list-style: none;
+  padding: 0;
+}
+
+.navItem {
+  margin: 15px;
+  height: 2rem;
+  background-color: rgb(240, 210, 111);
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.link {
+  text-decoration: none;
+  color: rgb(82, 79, 79);
+}
+
+.rightSideContainer {
+  text-align: center;
+}
+
+.rightSideHeading {
+  font-size: 30px;
+  margin: 0;
+  padding-top: 10px;
+}
+
+.adminInformation {
+  background-color: rgb(240, 210, 111);
+  width: 70%;
+  margin: auto;
+  border-radius: 7px;
+}
+
+.adminInformation p {
+  margin: 0;
+  padding: 5px;
+}
+
+.Container {
+  background-color: rgba(233, 171, 171, 0.993);
+  height: 25rem;
+  margin-top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainBaseContainer {
+  height: 90%rem;
+  width: 95%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-areas: "left right";
+  border-radius: 20px;
+  background-color: rgb(201, 169, 63);
+}
+
+.adminLeftSide {
+  grid-area: left;
+}
+
+.adminRightSide {
+  grid-area: right;
+}
