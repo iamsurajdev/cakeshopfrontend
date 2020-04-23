@@ -3,6 +3,7 @@ import Base from "../core/Base";
 import { isAuthenticated } from "../auth/api/Authentication";
 import { Link } from "react-router-dom";
 import { CreateCategory } from "./api/AdminApi";
+import ACstyle from "./allStyle/aCategory.module.css";
 
 const AddCategory = () => {
   const [name, setName] = useState("");
@@ -13,7 +14,7 @@ const AddCategory = () => {
 
   const goBack = () => (
     <div className="mt-5">
-      <Link className="btn btn-sm btn-info mb-3" to="/admin/dashboard">
+      <Link className={ACstyle.goBackButton} to="/admin/dashboard">
         Admin Home
       </Link>
     </div>
@@ -43,47 +44,40 @@ const AddCategory = () => {
 
   const successMassage = () => {
     if (success) {
-      return <h4 className="text-success">Category Created Successfully</h4>;
+      return <h4 className={ACstyle.sAlert}>Category Created Successfully</h4>;
     }
   };
-  const warningMassage = () => {
+  const errorMassage = () => {
     if (error) {
-      return <h4 className="text-warning"> Failed to Created Category</h4>;
+      return <h4 className={ACstyle.eAlert}> Failed to Created Category</h4>;
     }
   };
 
   const myCategoryForm = () => (
     <form>
-      <div className="form-group">
-        <p className="lead">Enter the category</p>
-        <input
-          type="text"
-          className="form-control my-3"
-          onChange={handleChange}
-          value={name}
-          autoFocus
-          required
-          placeholder="For Ex. Summer"
-        />
-        <button onClick={onSubmit} className="btn btn-outline-info">
-          Create Category
-        </button>
-      </div>
+      <p className={ACstyle.formLabel}>Enter the category</p>
+      <input
+        type="text"
+        className={ACstyle.inputFiled}
+        onChange={handleChange}
+        value={name}
+        autoFocus
+        required
+        placeholder="For Ex. Summer"
+      />
+      <button onClick={onSubmit} className={ACstyle.button}>
+        Create Category
+      </button>
     </form>
   );
 
   return (
-    <Base
-      title="Create a category here"
-      description="Add new category for new t-shirt"
-      className="container bg-info p-4"
-    >
-      <div className="row bg-white rounded">
-        <div className="col-md-8 offset-md-2">
-          {successMassage()}
-          {warningMassage()}
-          {myCategoryForm()}
-          {goBack()}
+    <Base>
+      {successMassage()}
+      {errorMassage()}
+      <div className={ACstyle.mainContainer}>
+        <div className={ACstyle.formContainer}>
+          {myCategoryForm()} {goBack()}
         </div>
       </div>
     </Base>

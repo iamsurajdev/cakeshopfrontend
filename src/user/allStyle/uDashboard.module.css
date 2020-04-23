@@ -1,0 +1,22 @@
+.container {
+  background-color: #e8abab;
+  height: 25rem;
+}
+
+.dBoardHeading {
+  text-align: center;
+  margin: auto;
+  margin: 0;
+  padding-top: 10px;
+}
+
+.informationContainer {
+  width: 60%;
+  margin: auto;
+  padding: 20px;
+  margin-bottom: 30px;
+  margin-top: 40px;
+  background-color: #c9a93f;
+  border-radius: 10px;
+  text-align: center;
+}

@@ -1,0 +1,90 @@
+.mainContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aquamarine;
+}
+
+.formContainer {
+  width: 40%;
+  height: 25rem;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border: 2px solid rgb(60, 65, 65);
+  border-radius: 20px;
+  overflow: visible;
+}
+
+.formContainer form {
+  margin: auto;
+  height: auto;
+  width: 80%;
+  padding-top: 30px;
+  margin-bottom: 50px;
+}
+
+.inputFiled {
+  width: 100%;
+  height: 30px;
+  border-radius: 5px;
+  border-style: none;
+  text-align: center;
+  font-size: 20px;
+}
+
+.formLabel {
+  font-size: 25px;
+  text-align: center;
+}
+.singleFiled {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.button {
+  width: 100%;
+  margin-top: 30px;
+  height: 25px;
+  border-radius: 10px;
+  border-style: none;
+  text-align: center;
+  background-color: rgb(47, 207, 68);
+}
+
+.sMessageMainDiv {
+}
+
+.sAlert {
+  height: 3rem;
+  width: 100%;
+  background-color: rgb(48, 204, 108);
+  font-size: 30px;
+  text-align: center;
+  margin: 0;
+  padding-top: 10px;
+}
+
+.eMessageMainDiv {
+}
+
+.eAlert {
+  height: 3rem;
+  width: 100%;
+  background-color: rgb(204, 136, 48);
+  font-size: 30px;
+  text-align: center;
+  margin: 0;
+  padding-top: 10px;
+}
+
+.goBackButton {
+  text-decoration: none;
+  width: 15%;
+  height: 20px;
+  background-color: rgb(245, 245, 245);
+  color: black;
+  margin-top: 40px;
+  margin-left: 40px;
+  padding: 7px;
+  border-radius: 5px;
+}

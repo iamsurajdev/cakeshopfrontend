@@ -3,7 +3,9 @@ import Base from "../core/Base";
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth/api/Authentication";
 import { getCategories, deleteCategory } from "./api/AdminApi";
-
+import MCstyle from "./allStyle/mCategory.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 const ManegeCategories = () => {
   const [categories, setCategories] = useState([]);
 
@@ -34,44 +36,45 @@ const ManegeCategories = () => {
   };
 
   return (
-    <Base title="Welcome admin" description="Manage products here">
-      <h2 className="mb-4">All Categories:</h2>
-      <Link className="btn btn-info" to={`/admin/dashboard`}>
-        <span className="">Admin Home</span>
-      </Link>
-      <div className="row">
-        <div className="col-12">
-          <h2 className="text-center text-white my-3">Total 3 Categories</h2>
-          {categories.map((category, index) => {
-            return (
-              <div className="row text-center mb-2 ">
-                <div className="col-4">
-                  <h3 className="text-white text-left" key={index}>
-                    {category.name}
-                  </h3>
-                </div>
-                <div className="col-4">
-                  <Link
-                    className="btn btn-success"
-                    to={`/admin/category/update/${category._id}`}
-                  >
-                    <span className="">Update</span>
-                  </Link>
-                </div>
-                <div className="col-4">
-                  <button
-                    onClick={() => {
-                      deleteThisCategory(category._id);
-                    }}
-                    className="btn btn-danger"
-                  >
-                    Delete
-                  </button>
-                </div>
+    <Base>
+      <div className={MCstyle.topContainer}>
+        <h2 className={MCstyle.mainHeading}>Manege Categories</h2>
+        <Link className={MCstyle.adminHomeButton} to={`/admin/dashboard`}>
+          Admin Home
+        </Link>
+      </div>
+
+      <div className={MCstyle.mainContainer}>
+        <h2 className="">All Categories</h2>
+        {categories.map((category, index) => {
+          return (
+            <div className={MCstyle.categoryRow}>
+              <div className={MCstyle.categoryName}>
+                <h3 className="" key={index}>
+                  {category.name}
+                </h3>
               </div>
-            );
-          })}
-        </div>
+              <div className={MCstyle.categoryUpdate}>
+                <Link
+                  className={MCstyle.updateLink}
+                  to={`/admin/category/update/${category._id}`}
+                >
+                  <FontAwesomeIcon icon={faEdit} />
+                </Link>
+              </div>
+              <div className={MCstyle.categoryDelete}>
+                <p
+                  onClick={() => {
+                    deleteThisCategory(category._id);
+                  }}
+                  className="btn btn-danger"
+                >
+                  <FontAwesomeIcon icon={faTrashAlt} />
+                </p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </Base>
   );
