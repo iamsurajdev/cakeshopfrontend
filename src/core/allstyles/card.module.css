@@ -7,6 +7,14 @@
   border-radius: 10px;
 }
 
+.imageDiv {
+  position: relative;
+  height: 0;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 75.09%;
+}
+
 .cardTitle {
   text-align: center;
   margin: 0;

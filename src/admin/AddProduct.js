@@ -3,6 +3,7 @@ import Base from "../core/Base";
 import { Link } from "react-router-dom";
 import { getCategories, createaProduct } from "./api/AdminApi";
 import { isAuthenticated } from "../auth/api/Authentication";
+import APstyle from "./allStyle/aProduct.module.css";
 
 const AddProduct = () => {
   const { user, token } = isAuthenticated();
@@ -79,17 +80,14 @@ const AddProduct = () => {
   };
 
   const successMessage = () => (
-    <div
-      className="alert alert-success mt-3"
-      style={{ display: createdProduct ? "" : "none" }}
-    >
-      <h4>{createdProduct} created successfully</h4>
+    <div style={{ display: createdProduct ? "" : "none" }}>
+      <h4 className={APstyle.eAlert}>{createdProduct} created successfully</h4>
     </div>
   );
   const errorMessage = () => {
     if (error) {
       return (
-        <div className="alert alert-danger mt-3">
+        <div className={APstyle.eAlert}>
           <h4>{error}</h4>
         </div>
       );
@@ -98,52 +96,50 @@ const AddProduct = () => {
 
   const createProductForm = () => (
     <form>
-      <span>Post photo</span>
-      <div className="form-group ">
-        <label className="btn btn-block btn-success">
-          <input
-            onChange={handleChange("photo")}
-            type="file"
-            name="photo"
-            accept="image"
-            placeholder="choose a file"
-          />
-        </label>
+      <div className={APstyle.singleFiled}>
+        <label className={APstyle.formLabel}>Post photo</label>
+        <input
+          className={APstyle.inputFiled}
+          onChange={handleChange("photo")}
+          type="file"
+          name="photo"
+          accept="image"
+        />
       </div>
-      <div className="form-group">
+      <div className={APstyle.singleFiled}>
         <input
           onChange={handleChange("name")}
           name="photo"
-          className="form-control"
+          className={APstyle.inputFiled}
           placeholder="Name"
           value={name}
         />
       </div>
-      <div className="form-group">
+      <div className={APstyle.singleFiled}>
         <textarea
           onChange={handleChange("description")}
           name="photo"
-          className="form-control"
+          className={APstyle.inputFiled}
           placeholder="Description"
           value={description}
         />
       </div>
-      <div className="form-group">
+      <div className={APstyle.singleFiled}>
         <input
           onChange={handleChange("price")}
           type="number"
-          className="form-control"
+          className={APstyle.inputFiled}
           placeholder="Price"
           value={price}
         />
       </div>
-      <div className="form-group">
+      <div className={APstyle.singleFiled}>
         <select
           onChange={handleChange("category")}
-          className="form-control"
+          className={APstyle.inputFiled}
           placeholder="Category"
         >
-          <option>Select</option>
+          <option className={APstyle.dropdownFiled}>Select</option>
           {categories &&
             categories.map((cate, index) => (
               <option key={index} value={cate._id}>
@@ -152,40 +148,39 @@ const AddProduct = () => {
             ))}
         </select>
       </div>
-      <div className="form-group">
+      <div className={APstyle.singleFiled}>
         <input
           onChange={handleChange("stock")}
           type="number"
-          className="form-control"
+          className={APstyle.inputFiled}
           placeholder="Quantity"
           value={stock}
         />
       </div>
 
-      <button
-        type="submit"
-        onClick={onSubmit}
-        className="btn btn-outline-success mb-3"
-      >
+      <button type="submit" onClick={onSubmit} className={APstyle.button}>
         Create Product
       </button>
     </form>
   );
 
+  const goBackButton = () => (
+    <Link to="/admin/dashboard" className={APstyle.goBackButton}>
+      Admin Home
+    </Link>
+  );
+
   return (
-    <Base
-      title="Add a product here!"
-      description="Welcome to product creation section"
-      className="container bg-info p-4"
-    >
-      <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
-        Admin Home
-      </Link>
-      <div className="row bg-dark text-dark rounded">
-        <div className="col-md-8 offset-md-2">
-          {successMessage()}
-          {errorMessage()}
+    <Base>
+      {successMessage()}
+      {errorMessage()}
+      <div className={APstyle.topHeading}>
+        <h1>Add Product Page</h1>
+      </div>
+      <div className={APstyle.mainContainer}>
+        <div className={APstyle.formContainer}>
           {createProductForm()}
+          {goBackButton()}
         </div>
       </div>
     </Base>

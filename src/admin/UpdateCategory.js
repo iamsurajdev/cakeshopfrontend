@@ -6,11 +6,15 @@ import { getCategory, updateCategory } from "./api/AdminApi";
 import UCstyle from "./allStyle/uCategory.module.css";
 
 const UpdateCategory = ({ match }) => {
-  const [name, setName] = useState("");
+  const { user, token } = isAuthenticated();
+
+  const [values, setValues] = useState({
+    name: "",
+  });
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const { user, token } = isAuthenticated();
+  const { name } = values;
 
   const goBack = () => (
     <div className="mt-5">
@@ -22,14 +26,12 @@ const UpdateCategory = ({ match }) => {
 
   const preload = (categoryId) => {
     getCategory(categoryId).then((data) => {
-      console.log(data);
-
       if (data.error) {
-        setError("true");
+        setError(data.error);
       } else {
         setError("");
         setSuccess(false);
-        setName(data.name);
+        setValues({ name: data.name, formData: new FormData() });
       }
     });
   };
@@ -40,22 +42,25 @@ const UpdateCategory = ({ match }) => {
 
   const handleChange = (event) => {
     setError("");
-    setName(event.target.value);
+    const value = event.target.value;
+
+    setValues({ name: value });
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
-    setError();
+    setError("");
+    console.log(values);
 
     //backend request fired
-    updateCategory(match.params.categoryId, user._id, token, { name }).then(
+    updateCategory(match.params.categoryId, user._id, token, values).then(
       (data) => {
         if (data.error) {
           setError(data.error);
         } else {
           setError();
           setSuccess(true);
-          setName(name);
+          setValues({ name: data.name });
         }
       }
     );

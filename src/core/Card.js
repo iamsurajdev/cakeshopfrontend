@@ -62,7 +62,10 @@ const Card = ({
       <div className={Cstyle.cardTitle}>{cartTitle}</div>
       <div className="card-body">
         {getARedirect(redirect)}
-        <ImageApi product={product} />
+        <div className={Cstyle.imageDiv}>
+          <ImageApi product={product} />
+        </div>
+
         <p className={Cstyle.cartDescription}>{cartDescription}</p>
         <p className="btn btn-success rounded  btn-sm px-4">
           Price: $ {cartPrice}

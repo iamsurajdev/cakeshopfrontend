@@ -19,7 +19,7 @@ const UpdateProduct = ({ match }) => {
     error: "",
     createdProduct: "",
     getaRedirect: false,
-    firmData: "",
+    formData: "",
   });
 
   const {
