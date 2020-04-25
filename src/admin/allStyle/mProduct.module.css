@@ -1,0 +1,75 @@
+.topContainer {
+  height: 80px;
+  background-color: rgb(140, 171, 199);
+}
+
+.mainHeading {
+  text-align: center;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.adminHomeButton {
+  text-decoration: none;
+  width: 15%;
+  height: 20px;
+  background-color: rgb(245, 245, 245);
+  color: black;
+  margin: 20px;
+  padding: 7px;
+  border-radius: 5px;
+}
+
+.mainContainer {
+  margin-bottom: 30px;
+}
+
+.categoryRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "col1 col2 col3";
+  text-align: center;
+  background-color: aqua;
+  margin-top: 20px;
+}
+
+.categoryName {
+  grid-area: col1;
+}
+
+.categoryUpdate {
+  grid-area: col2;
+  padding-top: 18px;
+  font-size: 20px;
+  color: rgb(139, 147, 224);
+}
+
+.categoryUpdate :hover {
+  color: rgb(33, 36, 226);
+  font-size: 25px;
+}
+
+.updateLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.categoryDelete {
+  grid-area: col3;
+  font-size: 20px;
+  padding-top: 18px;
+  color: rgb(216, 127, 127);
+}
+
+.categoryDelete p {
+  margin: 0;
+  width: 20px;
+  margin: auto;
+}
+
+.categoryDelete :hover {
+  color: rgb(221, 44, 44);
+  cursor: pointer;
+  font-size: 25px;
+}

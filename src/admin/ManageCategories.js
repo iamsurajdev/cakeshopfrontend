@@ -67,7 +67,7 @@ const ManegeCategories = () => {
                   onClick={() => {
                     deleteThisCategory(category._id);
                   }}
-                  className="btn btn-danger"
+                  className=""
                 >
                   <FontAwesomeIcon icon={faTrashAlt} />
                 </p>

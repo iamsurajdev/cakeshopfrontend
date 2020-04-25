@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-
 import Base from "../core/Base";
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../auth/api/Authentication";
 import { getProducts, deleteProduct } from "./api/AdminApi";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
+import MPstyle from "./allStyle/mProduct.module.css";
 
 const ManageProducts = () => {
   const [products, setProducts] = useState([]);
@@ -35,38 +37,41 @@ const ManageProducts = () => {
   };
 
   return (
-    <Base title="Welcome admin" description="Manage products here">
-      <h2 className="mb-4">All products:</h2>
-      <Link className="btn btn-info" to={`/admin/dashboard`}>
-        <span className="">Admin Home</span>
-      </Link>
+    <Base>
+      <div className={MPstyle.topContainer}>
+        <h2 className={MPstyle.mainHeading}>All products:</h2>
+        <Link className={MPstyle.adminHomeButton} to={`/admin/dashboard`}>
+          Admin Home
+        </Link>
+      </div>
+
       <div className="row">
-        <div className="col-12">
-          <h2 className="text-center text-white my-3">Total 3 products</h2>
+        <div className={MPstyle.mainContainer}>
+          <h2 className="">All Products</h2>
 
           {products.map((product, index) => {
             return (
-              <div key={index} className="row text-center mb-2 ">
-                <div className="col-4">
-                  <h3 className="text-white text-left">{product.name}</h3>
+              <div key={index} className={MPstyle.categoryRow}>
+                <div className={MPstyle.categoryName}>
+                  <h3 className="">{product.name}</h3>
                 </div>
-                <div className="col-4">
+                <div className={MPstyle.categoryUpdate}>
                   <Link
                     className="btn btn-success"
                     to={`/admin/product/update/${product._id}`}
                   >
-                    <span className="">Update</span>
+                    <FontAwesomeIcon icon={faEdit} />
                   </Link>
                 </div>
-                <div className="col-4">
-                  <button
+                <div className={MPstyle.categoryDelete}>
+                  <p
                     onClick={() => {
                       deleteThisProduct(product._id);
                     }}
-                    className="btn btn-danger"
+                    className=""
                   >
-                    Delete
-                  </button>
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                  </p>
                 </div>
               </div>
             );

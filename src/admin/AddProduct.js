@@ -81,7 +81,7 @@ const AddProduct = () => {
 
   const successMessage = () => (
     <div style={{ display: createdProduct ? "" : "none" }}>
-      <h4 className={APstyle.eAlert}>{createdProduct} created successfully</h4>
+      <h4 className={APstyle.sAlert}>{createdProduct} created successfully</h4>
     </div>
   );
   const errorMessage = () => {

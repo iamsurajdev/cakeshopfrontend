@@ -3,6 +3,7 @@ import Base from "../core/Base";
 import { Link } from "react-router-dom";
 import { getCategories, getProduct, updateProduct } from "./api/AdminApi";
 import { isAuthenticated } from "../auth/api/Authentication";
+import UPstyle from "./allStyle/uProduct.module.css";
 
 const UpdateProduct = ({ match }) => {
   const { user, token } = isAuthenticated();
@@ -104,17 +105,14 @@ const UpdateProduct = ({ match }) => {
   };
 
   const successMessage = () => (
-    <div
-      className="alert alert-success mt-3"
-      style={{ display: createdProduct ? "" : "none" }}
-    >
-      <h4>{createdProduct} updated successfully</h4>
+    <div style={{ display: createdProduct ? "" : "none" }}>
+      <h4 className={UPstyle.sAlert}>{createdProduct} updated successfully</h4>
     </div>
   );
   const errorMessage = () => {
     if (error) {
       return (
-        <div className="alert alert-danger mt-3">
+        <div className={UPstyle.eAlert}>
           <h4>{error}</h4>
         </div>
       );
@@ -123,49 +121,47 @@ const UpdateProduct = ({ match }) => {
 
   const createProductForm = () => (
     <form>
-      <span>Post photo</span>
-      <div className="form-group ">
-        <label className="btn btn-block btn-success">
-          <input
-            onChange={handleChange("photo")}
-            type="file"
-            name="photo"
-            accept="image"
-            placeholder="choose a file"
-          />
-        </label>
+      <div className={UPstyle.singleFiled}>
+        <label className={UPstyle.formLabel}>Post photo</label>
+        <input
+          onChange={handleChange("photo")}
+          className={UPstyle.inputFiled}
+          type="file"
+          name="photo"
+          accept="image"
+        />
       </div>
-      <div className="form-group">
+      <div className={UPstyle.singleFiled}>
         <input
           onChange={handleChange("name")}
           name="photo"
-          className="form-control"
+          className={UPstyle.inputFiled}
           placeholder="Name"
           value={name}
         />
       </div>
-      <div className="form-group">
+      <div className={UPstyle.singleFiled}>
         <textarea
           onChange={handleChange("description")}
           name="photo"
-          className="form-control"
+          className={UPstyle.inputFiled}
           placeholder="Description"
           value={description}
         />
       </div>
-      <div className="form-group">
+      <div className={UPstyle.singleFiled}>
         <input
           onChange={handleChange("price")}
           type="number"
-          className="form-control"
+          className={UPstyle.inputFiled}
           placeholder="Price"
           value={price}
         />
       </div>
-      <div className="form-group">
+      <div className={UPstyle.singleFiled}>
         <select
           onChange={handleChange("category")}
-          className="form-control"
+          className={UPstyle.inputFiled}
           placeholder="Category"
         >
           <option>Select</option>
@@ -177,40 +173,40 @@ const UpdateProduct = ({ match }) => {
             ))}
         </select>
       </div>
-      <div className="form-group">
+      <div className={UPstyle.singleFiled}>
         <input
           onChange={handleChange("stock")}
           type="number"
-          className="form-control"
+          className={UPstyle.inputFiled}
           placeholder="Quantity"
           value={stock}
         />
       </div>
 
-      <button
-        type="submit"
-        onClick={onSubmit}
-        className="btn btn-outline-success mb-3"
-      >
+      <button type="submit" onClick={onSubmit} className={UPstyle.button}>
         Update Product
       </button>
     </form>
   );
 
+  const goBackButton = () => (
+    <Link to="/admin/dashboard" className={UPstyle.goBackButton}>
+      Admin Home
+    </Link>
+  );
+
   return (
-    <Base
-      title="Add a product here!"
-      description="Welcome to product creation section"
-      className="container bg-info p-4"
-    >
-      <Link to="/admin/dashboard" className="btn btn-md btn-dark mb-3">
-        Admin Home
-      </Link>
-      <div className="row bg-dark text-dark rounded">
-        <div className="col-md-8 offset-md-2">
-          {successMessage()}
-          {errorMessage()}
+    <Base>
+      {successMessage()}
+      {errorMessage()}
+      <div className={UPstyle.topHeading}>
+        <h1>Update Product Page</h1>
+      </div>
+
+      <div className={UPstyle.mainContainer}>
+        <div className={UPstyle.formContainer}>
           {createProductForm()}
+          {goBackButton()}
         </div>
       </div>
     </Base>
