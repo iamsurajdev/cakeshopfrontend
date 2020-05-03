@@ -5,9 +5,7 @@ import { Link } from "react-router-dom";
 import Astyle from "./allStyle/aDashboard.module.css";
 
 const AdminDashBoard = () => {
-  const {
-    user: { name, email },
-  } = isAuthenticated();
+  const { name, email } = isAuthenticated();
 
   const adminLeftSide = () => {
     return (

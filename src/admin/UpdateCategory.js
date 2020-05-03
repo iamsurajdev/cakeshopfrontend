@@ -6,7 +6,7 @@ import { getCategory, updateCategory } from "./api/AdminApi";
 import UCstyle from "./allStyle/uCategory.module.css";
 
 const UpdateCategory = ({ match }) => {
-  const { user, token } = isAuthenticated();
+  const { id, token } = isAuthenticated();
 
   const [values, setValues] = useState({
     name: "",
@@ -53,17 +53,15 @@ const UpdateCategory = ({ match }) => {
     console.log(values);
 
     //backend request fired
-    updateCategory(match.params.categoryId, user._id, token, values).then(
-      (data) => {
-        if (data.error) {
-          setError(data.error);
-        } else {
-          setError();
-          setSuccess(true);
-          setValues({ name: data.name });
-        }
+    updateCategory(match.params.categoryId, id, token, values).then((data) => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setError();
+        setSuccess(true);
+        setValues({ name: data.name });
       }
-    );
+    });
   };
 
   const successMassage = () => {

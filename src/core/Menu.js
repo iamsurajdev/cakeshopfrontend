@@ -33,7 +33,7 @@ const Menu = ({ history }) => (
           </span>
         </li>
       )}
-      {isAuthenticated() && isAuthenticated().user.role === 1 && (
+      {isAuthenticated() && isAuthenticated().role === 1 && (
         <li className={Mstyle.navItem}>
           <Link
             style={currentTab(history, "/user/dashboard")}

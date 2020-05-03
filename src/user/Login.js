@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Base from "../core/Base";
 import { Redirect } from "react-router-dom";
 import Lstyle from "./allStyle/login.module.css";
+
 import {
   login,
   authenticate,
@@ -28,29 +29,34 @@ const Login = () => {
     setValues({ ...values, error: false, loading: true });
     login({ email, password })
       .then((data) => {
-        if (data.errors) {
-          setValues({ ...values, error: data.errors, loading: false });
+        if (data.error) {
+          setValues({ ...values, error: data.error, loading: false });
           console.log("DATA.ERRORS works");
         }
         if (data.message) {
           setValues({ ...values, error: data.message, loading: false });
           console.log("DATA.MESSAGE works");
         }
-        if (data.user) {
+        if (data.token) {
+          console.log("reach Authenticate");
+
           authenticate(data, () => {
             setValues({
               ...values,
+              loading: true,
               didRedirect: true,
             });
           });
         }
       })
-      .catch(console.log("login request failed"));
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const performRedirect = () => {
     if (didRedirect) {
-      if (isAuthenticated().user) {
+      if (isAuthenticated()) {
         return <Redirect to="/" />;
       }
     }

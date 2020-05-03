@@ -6,7 +6,7 @@ import { isAuthenticated } from "../auth/api/Authentication";
 import UPstyle from "./allStyle/uProduct.module.css";
 
 const UpdateProduct = ({ match }) => {
-  const { user, token } = isAuthenticated();
+  const { id, token } = isAuthenticated();
 
   const [values, setValues] = useState({
     name: "",
@@ -79,24 +79,22 @@ const UpdateProduct = ({ match }) => {
     event.preventDefault();
     setValues({ ...values, error: "", loading: true });
 
-    updateProduct(match.params.productId, user._id, token, formData).then(
-      (data) => {
-        if (data.error) {
-          setValues({ ...values, error: data.error });
-        } else {
-          setValues({
-            ...values,
-            name: "",
-            description: "",
-            price: "",
-            photo: "",
-            stock: "",
-            loading: false,
-            createdProduct: data.name,
-          });
-        }
+    updateProduct(match.params.productId, id, token, formData).then((data) => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          name: "",
+          description: "",
+          price: "",
+          photo: "",
+          stock: "",
+          loading: false,
+          createdProduct: data.name,
+        });
       }
-    );
+    });
   };
   const handleChange = (name) => (event) => {
     const value = name === "photo" ? event.target.files[0] : event.target.value;

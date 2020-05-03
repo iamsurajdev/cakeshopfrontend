@@ -6,7 +6,7 @@ import { isAuthenticated } from "../auth/api/Authentication";
 import APstyle from "./allStyle/aProduct.module.css";
 
 const AddProduct = () => {
-  const { user, token } = isAuthenticated();
+  const { id, token } = isAuthenticated();
 
   const [values, setValues] = useState({
     name: "",
@@ -56,7 +56,7 @@ const AddProduct = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: "", loading: true });
-    createaProduct(user._id, token, formData).then((data) => {
+    createaProduct(id, token, formData).then((data) => {
       if (data.error) {
         setValues({ ...values, error: data.error });
       } else {

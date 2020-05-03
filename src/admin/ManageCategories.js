@@ -9,7 +9,7 @@ import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 const ManegeCategories = () => {
   const [categories, setCategories] = useState([]);
 
-  const { user, token } = isAuthenticated();
+  const { id, token } = isAuthenticated();
 
   const preload = () => {
     getCategories().then((data) => {
@@ -26,7 +26,7 @@ const ManegeCategories = () => {
   }, []);
 
   const deleteThisCategory = (categoryId) => {
-    deleteCategory(categoryId, user._id, token).then((data) => {
+    deleteCategory(categoryId, id, token).then((data) => {
       if (data.error) {
         console.log(data.error);
       } else {

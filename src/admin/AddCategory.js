@@ -10,7 +10,7 @@ const AddCategory = () => {
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const { user, token } = isAuthenticated();
+  const { id, token } = isAuthenticated();
 
   const goBack = () => (
     <div className="mt-5">
@@ -31,7 +31,7 @@ const AddCategory = () => {
 
     //backend request fired
 
-    CreateCategory(user._id, token, { name }).then((data) => {
+    CreateCategory(id, token, { name }).then((data) => {
       if (data.error) {
         setError("true");
       } else {
